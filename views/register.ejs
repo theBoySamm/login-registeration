@@ -1,0 +1,53 @@
+<%- include("partials/header") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="center">
+        <form action="/register" method="POST">
+          <h3 class="header-text">
+            Create new Account. <br />
+            It's FREE
+          </h3>
+
+          <% if(error && error.length > 0) { %>
+          <div class="alert alert-danger"><%= error %></div>
+          <% } %> 
+          <% if(success && success.length > 0) { %>
+          <div class="alert alert-success"><%= success %></div>
+          <% } %>
+
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="pass"
+              name="password"
+              placeholder="Password"
+            />
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn" type="submit">REGISTER</button>
+          </div>
+          <p class="mt-3 header-text">
+            Already have an Account?
+            <a class="header-text nounderline" href="/login">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>

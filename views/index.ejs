@@ -1,0 +1,56 @@
+<%- include("partials/header") %>
+
+
+
+
+
+<div class="px-4 py-5 my-5 text-center">
+  <img
+  style="border-radius: 50%;"
+    class="d-block mx-auto mb-4"
+    src="https://lh3.googleusercontent.com/ogw/ADea4I6Pu7lS6j8x0oHK2OUHZk0Chn2iLsyBnyKxVUliyg=s83-c-mo"
+    alt=""
+    width="100px"
+    height="100px"
+  />
+  <h3 class="display-6 fw-bold">1app for all payments at the cheapest price</h3>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">
+      Quickly design and customize responsive mobile-first sites with Bootstrap,
+      the world’s most popular front-end open source toolkit, featuring Sass
+    </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+    <% if(user) { %>
+       <h6>hello <%= user.email.substring(user.email.indexOf(0), user.email.indexOf("@")) %></h6>
+        <a
+        type="button"
+        class="link bg-primary text-white btn btn-lg px-4"
+        href="/logout"
+        >logout</a>
+         <a
+        type="button"
+        class="link bg-primary text-white btn btn-lg px-4"
+        href="/secrets"
+        >secrets</a
+    <%  } else  { %>
+       <a
+        type="button"
+        class="link bg-primary text-white btn px-4"
+        href="/register"
+        >Register</a
+      >
+      <a
+        type="button"
+        class="link bg-secondary text-white btn px-4"
+        href="/login"
+        >Login</a
+      > 
+    <%  } %>
+
+
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>

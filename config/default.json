@@ -1,0 +1,4 @@
+{
+    "MongoURI": "mongodb+srv://theScantyDev:GqmdLwTwYv4O89PS@thescantydev.oc0tc.mongodb.net/node-auth?retryWrites=true&w=majority",
+    "secrets":"iamthelastchild"
+}

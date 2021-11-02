@@ -1,0 +1,54 @@
+const mongoose = require("mongoose");
+const { isEmail } = require("validator");
+
+const bcrypt = require("bcrypt");
+
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: [true, "please enter a valid email address"],
+      lowercase: true,
+      validate: [isEmail, "please enter a valid email "],
+    },
+    password: {
+      type: String,
+      required: [true, " Please enter a password"],
+      minlength: [6, "password should be at least six letters"],
+    },
+  },
+  { timestamps: true }
+);
+
+// fire a function before we save
+userSchema.pre("save", async function (next) {
+  const user = this;
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
+  next();
+});
+
+// fire a function after save
+// userSchema.post("save", function (doc, next) {
+//   console.log("new user was created and saved", doc);
+//   next();
+// });
+
+
+// Static method to login user
+userSchema.statics.login = async function (email, password) {
+  const user = await this.findOne({email})
+  if(user){
+    const auth = await bcrypt.compare(password, user.password)
+    if(auth){
+      return user
+    }
+    throw Error("incorrect password")
+  } 
+  throw Error("incorrect email")
+}
+
+const User = mongoose.model("user", userSchema);
+
+module.exports = User;
